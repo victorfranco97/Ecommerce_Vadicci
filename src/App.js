@@ -81,33 +81,31 @@ const App = () => {
 
   return (
     <Router>
-      <ThemeProvider theme={darkTheme}>
-        <div>
-          <Navbar totalItems={cart.total_items} />
-          <Switch>
-            <Route exact path="/">
-              <Products products={products} onAddToCart={handleAddToCart} />
-            </Route>
-            <Route exact path="/carrito">
-              <Cart
-                cart={cart}
-                handleUpdateCartQty={handleUpdateCartQty}
-                handleRemoveFromCart={handleRemoveFromCart}
-                handleEmptyCart={handleEmptyCart}
-              />
-            </Route>
+      <div>
+        <Navbar totalItems={cart.total_items} />
+        <Switch>
+          <Route exact path="/">
+            <Products products={products} onAddToCart={handleAddToCart} />
+          </Route>
+          <Route exact path="/carrito">
+            <Cart
+              cart={cart}
+              handleUpdateCartQty={handleUpdateCartQty}
+              handleRemoveFromCart={handleRemoveFromCart}
+              handleEmptyCart={handleEmptyCart}
+            />
+          </Route>
 
-            <Route exact path="/checkout">
-              <Checkout
-                cart={cart}
-                order={order}
-                onCaptureCheckout={handleCaptureCheckout}
-                error={errorMessage}
-              />
-            </Route>
-          </Switch>
-        </div>
-      </ThemeProvider>
+          <Route exact path="/checkout">
+            <Checkout
+              cart={cart}
+              order={order}
+              onCaptureCheckout={handleCaptureCheckout}
+              error={errorMessage}
+            />
+          </Route>
+        </Switch>
+      </div>
     </Router>
   );
 };
