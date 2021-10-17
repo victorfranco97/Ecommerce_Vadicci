@@ -9,13 +9,13 @@ import FormInput from './Checkout/CustomTextField'
 const AdressForm = ( { next }) => {
     
 
-    function sendEmail(e) {
-        e.preventDefault();
+    // function sendEmail(e) {
+    //     e.preventDefault();
         
-        emailjs.sendForm(process.env.REACT_APP_EMAILJS_SERVICE_ID, process.env.REACT_APP_EMAILJS_TEMPLATE, e.target, process.env.REACT_APP_EMAILJS_USER_ID).then(res=>{
-            console.log(res.text);
-        }).catch(err=> console.log(err));
-    }
+    //     emailjs.sendForm(process.env.REACT_APP_EMAILJS_SERVICE_ID, process.env.REACT_APP_EMAILJS_TEMPLATE, e.target, process.env.REACT_APP_EMAILJS_USER_ID).then(res=>{
+    //         console.log(res.text);
+    //     }).catch(err=> console.log(err));
+    // }
 
     const methods = useForm();
 
