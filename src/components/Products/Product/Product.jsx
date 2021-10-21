@@ -1,9 +1,11 @@
-import React from 'react'
-import {Card, CardMedia, CardContent, CardActions, Typography, IconButton, Paper} from '@material-ui/core'
+import React from 'react';
+import {Link} from 'react-router-dom';
+import {Card, CardMedia, CardContent, CardActions, CardActionArea, Typography, IconButton, Paper} from '@material-ui/core'
 import {  ThemeProvider, createTheme} from '@material-ui/core/styles'
 import { AddShoppingCart } from '@material-ui/icons'
 
 import useStyles from './styles'; 
+
 
 const Product = ({ product, onAddToCart }) => {
     const classes = useStyles();
@@ -14,8 +16,10 @@ const Product = ({ product, onAddToCart }) => {
 
     return (
         
-            <Paper className={classes.root}>
+            
             <Card className={classes.root}>
+                {/* <Link to={`vista-producto/${product.id}`} style={{ textDecoration: 'none' }}> */}
+                <CardActionArea component={Link} to={`vista-producto/${product.id}`} >
                 <CardMedia className={classes.media} image={product.media.source} title={product.name}/>
                     <CardContent>
                         <div className={classes.CardContent}>
@@ -28,13 +32,15 @@ const Product = ({ product, onAddToCart }) => {
                         </div>
                         <Typography dangerouslySetInnerHTML={{ __html: product.description}} variant="body2" color="textSecondary"/>
                     </CardContent>
+                    </CardActionArea>
+                    {/* </Link> */}
                     <CardActions disableSpacing className={classes.CardActions}>
                         <IconButton aria-label="Agregar al carrito" onClick={() => onAddToCart(product.id, 1)}>
                             <AddShoppingCart/>
                         </IconButton>
                     </CardActions>
             </Card>
-            </Paper>
+            
             
     );
 }
