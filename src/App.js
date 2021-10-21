@@ -105,13 +105,8 @@ const App = () => {
             />
           </Route>
 
-          <Route exact path="/vista-producto">
-            <ProductView
-              cart={cart}
-              order={order}
-              onCaptureCheckout={handleCaptureCheckout}
-              error={errorMessage}
-            />
+          <Route exact path="/vista-producto/:id">
+            <ProductView onAddToCart={handleAddToCart} />
           </Route>
         </Switch>
       </div>
