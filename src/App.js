@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from "react";
 import { commerce } from "./lib/commerce";
-import { Products, Navbar, Cart, Checkout } from "./components";
+import { Products, Navbar, Cart, Checkout, ProductView } from "./components";
 import { BrowserRouter as Router, Switch, Route } from "react-router-dom";
 
 import { ThemeProvider, createTheme } from "@material-ui/core/styles";
@@ -98,6 +98,15 @@ const App = () => {
 
           <Route exact path="/checkout">
             <Checkout
+              cart={cart}
+              order={order}
+              onCaptureCheckout={handleCaptureCheckout}
+              error={errorMessage}
+            />
+          </Route>
+
+          <Route exact path="/vista-producto">
+            <ProductView
               cart={cart}
               order={order}
               onCaptureCheckout={handleCaptureCheckout}
