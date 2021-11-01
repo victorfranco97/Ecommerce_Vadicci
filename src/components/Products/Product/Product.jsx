@@ -1,26 +1,21 @@
 import React from 'react';
 import {Link} from 'react-router-dom';
-import {Card, CardMedia, CardContent, CardActions, CardActionArea, Typography, IconButton, Paper} from '@material-ui/core'
-import {  ThemeProvider, createTheme} from '@material-ui/core/styles'
+import {Card, CardMedia, CardContent, CardActions, CardActionArea, Typography, IconButton} from '@material-ui/core'
+// import {  ThemeProvider, createTheme} from '@material-ui/core/styles'
 import { AddShoppingCart } from '@material-ui/icons'
 
 import useStyles from './styles'; 
+import ProductView from '../ProductView/ProductView';
 
 
 const Product = ({ product, onAddToCart }) => {
     const classes = useStyles();
 
-
-
-
-
     return (
-        
-            
             <Card className={classes.root}>
-                {/* <Link to={`vista-producto/${product.id}`} style={{ textDecoration: 'none' }}> */}
                 <CardActionArea component={Link} to={`vista-producto/${product.id}`} >
-                <CardMedia className={classes.media} image={product.media.source} title={product.name}/>
+                    
+                    <CardMedia className={classes.media} image={product.media.source} title={product.name}/>
                     <CardContent>
                         <div className={classes.CardContent}>
                             <Typography variant="h5" gutterBottom>
@@ -32,8 +27,8 @@ const Product = ({ product, onAddToCart }) => {
                         </div>
                         <Typography dangerouslySetInnerHTML={{ __html: product.description}} variant="body2" color="textSecondary"/>
                     </CardContent>
-                    </CardActionArea>
-                    {/* </Link> */}
+                </CardActionArea>
+                    
                     <CardActions disableSpacing className={classes.CardActions}>
                         <IconButton aria-label="Agregar al carrito" onClick={() => onAddToCart(product.id, 1)}>
                             <AddShoppingCart/>

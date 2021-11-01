@@ -13,11 +13,11 @@ const App = () => {
   const [errorMessage, setErrorMessage] = useState("");
   // const [darkMode, setDarkMode] = useState(false);
 
-  const darkTheme = createTheme({
-    palette: {
-      type: "dark",
-    },
-  });
+  // const darkTheme = createTheme({
+  //   palette: {
+  //     type: "dark",
+  //   },
+  // });
   // const cambiarTema = () => !setDarkMode;
 
   const fetchProducts = async () => {
@@ -33,39 +33,41 @@ const App = () => {
     const item = await commerce.cart.add(productId, quantity);
 
     setCart(item.cart);
+    console.log(
+      "Lo que trae el carrito con el Add solo id y cantidad item:",
+      item,
+      " item.cart ",
+      item.cart
+    );
   };
 
   const handleUpdateCartQty = async (productId, quantity) => {
     const { cart } = await commerce.cart.update(productId, { quantity });
-
     setCart(cart);
   };
 
   const handleRemoveFromCart = async (productId) => {
     const { cart } = await commerce.cart.remove(productId);
-
     setCart(cart);
   };
 
   const handleEmptyCart = async () => {
     const { cart } = await commerce.cart.empty();
-
     setCart(cart);
   };
+
   const refreshCart = async () => {
     const newCart = await commerce.cart.refresh();
-
     setCart(newCart);
   };
+
   const handleCaptureCheckout = async (checkoutTokenId, newOrder) => {
     try {
       const incomingOrder = await commerce.checkout.capture(
         checkoutTokenId,
         newOrder
       );
-
       setOrder(incomingOrder);
-      console.log("a ver el orden si llego", incomingOrder);
       refreshCart();
     } catch (error) {
       setErrorMessage(error.data.error.message);
@@ -76,8 +78,6 @@ const App = () => {
     fetchProducts();
     fetchCart();
   }, []);
-
-  console.log(cart);
 
   return (
     <Router>
@@ -106,7 +106,11 @@ const App = () => {
           </Route>
 
           <Route exact path="/vista-producto/:id">
-            <ProductView onAddToCart={handleAddToCart} />
+            <ProductView
+              // products={products}
+              onAddToCart={handleAddToCart}
+              handleUpdateCartQty={handleUpdateCartQty}
+            />
           </Route>
         </Switch>
       </div>
