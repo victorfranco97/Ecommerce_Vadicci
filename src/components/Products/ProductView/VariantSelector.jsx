@@ -14,8 +14,8 @@ const VariantSelector = ({product}) => {
         console.log("Id from fetchVariants: ", id);
         const { data } = await commerce.products.getVariants(id);
         console.log(" {data} : ", data);
-        // setVariants(data);
-    //     setVariant(Object.keys(variants)[0]);
+        setVariants(data);
+        setVariant(Object.keys(variants)[0]);
     };
     
 
@@ -29,7 +29,7 @@ const VariantSelector = ({product}) => {
             page: 3,
         }).then((variants) => console.log("Variants how the documentation with my product.id: ",variants.data));
     }, []);
-    // console.log("Now see the variants: ", variants);
+    console.log("Now see the variants: ", variants);
     return (
 
         <Grid item xs={12} sm={6}>
